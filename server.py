@@ -11,21 +11,22 @@ def initialiser_adresse_register(x):
 def initialiser_adresse_coil(x):
    return [data["bit"][x]["adresse"]]
      
-
 def acceder_adresse_register(x):
     return data["mot"][x]["adresse"]
+
 def acceder_adresse_coil(x):
     return data["bit"][x]["adresse"]
 
 def acceder_valeur_register(x):
     return data["mot"][x]["valeur"]
+
 def acceder_valeur_coil(x):
     return data["bit"][x]["valeur"]
 
+
+
 adresse_ip = data["serveur"][0]["adresse"]
 port = data["serveur"][0]["port"]
-
-
 
 server = ModbusServer(adresse_ip,port,no_block=True)
 
@@ -36,12 +37,12 @@ try:
     print("Server is online")
     for i in range  (len(data["mot"])):
         
-    #state = [data["mot"][1]["adresse"]]
+    
         initialiser_adresse_register(i)
         DataBank.set_words(acceder_adresse_register(i),[acceder_valeur_register(i)])
         
     for i in range  (len(data["bit"])):
-    #coil = [data["bit"][0]["adresse"]]
+   
         initialiser_adresse_coil(i)
         DataBank.set_bits(acceder_adresse_coil(i),[acceder_valeur_coil(i)])
     
