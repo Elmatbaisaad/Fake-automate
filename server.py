@@ -1,5 +1,4 @@
 from pyModbusTCP.server import ModbusServer, DataBank
-from time import sleep
 from random import uniform
 import json
 
